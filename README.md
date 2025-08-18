@@ -1,44 +1,59 @@
+# 🛒 UXComex - Order Management
 
-# UXComex - Order Management (ASP.NET Core MVC + Dapper + SQL Server)
+[![.NET](https://img.shields.io/badge/.NET-6.0-blueviolet?logo=dotnet)](https://dotnet.microsoft.com/)
+[![C#](https://img.shields.io/badge/C%23-10.0-239120?logo=c-sharp)](https://docs.microsoft.com/dotnet/csharp/)
+[![SQL Server](https://img.shields.io/badge/SQL%20Server-2019-red?logo=microsoftsqlserver)](https://www.microsoft.com/sql-server)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-blue?logo=bootstrap)](https://getbootstrap.com/)
+[![Dapper](https://img.shields.io/badge/Dapper-ORM-orange)](https://github.com/DapperLib/Dapper)
 
-A complete implementation of the technical test: Customers/Products CRUD, Order creation with stock validation and automatic stock decrease, order listing with filters, status updates, and optional notifications.
+<!-- Badges de GitHub Actions (CI/CD) -->
+[![Build](https://github.com/SEU_USUARIO/SEU_REPOSITORIO/actions/workflows/dotnet.yml/badge.svg)](https://github.com/SEU_USUARIO/SEU_REPOSITORIO/actions/workflows/dotnet.yml)
+[![Tests](https://github.com/SEU_USUARIO/SEU_REPOSITORIO/actions/workflows/tests.yml/badge.svg)](https://github.com/SEU_USUARIO/SEU_REPOSITORIO/actions/workflows/tests.yml)
 
-## Stack
-- .NET 6, ASP.NET Core MVC
-- SQL Server
-- Dapper + Microsoft.Data.SqlClient
-- Bootstrap 5 + jQuery (CDN)
+Aplicação desenvolvida em **ASP.NET Core MVC (.NET 6)** com **Dapper** e **SQL Server**, simulando um sistema de **gestão de pedidos**.  
+Projeto entregue como desafio técnico, mas estruturado de forma limpa para servir como exemplo de portfólio no GitHub.  
 
-## How to run
-1. **Create the database**
-   - Open SQL Server and run `database/script.sql` (creates DB *UxComexOrdersDb* and seeds data).
+---
 
-2. **Configure the connection string**
-   - Edit `WebApp/appsettings.json` if needed. Example for a named instance:
-     ```json
-     "ConnectionStrings": {
-       "DefaultConnection": "Server=DESKTOP-2NBDRH3\\ECOMMERCEBD;Database=UxComexOrdersDb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
-     }
-     ```
+## ✨ Funcionalidades
 
-3. **Restore & run**
-   - In the `WebApp` folder:
-     ```bash
-     dotnet restore
-     dotnet run
-     ```
-   - Open the printed URL (e.g., `https://localhost:7143`).
+- **Clientes (Customers)**
+  - CRUD completo (cadastrar, editar, excluir, pesquisar por nome/email)
+- **Produtos (Products)**
+  - CRUD completo (cadastrar, editar, excluir, pesquisar por nome)
+  - Controle de estoque
+- **Pedidos (Orders)**
+  - Criar pedido com múltiplos itens  
+  - Validação de estoque no servidor (não deixa criar sem saldo)  
+  - Abatimento automático de estoque ao confirmar  
+  - Listagem com filtros (por cliente e status)  
+  - Detalhes do pedido com itens, subtotal e total calculados  
+  - Atualização de status (`New → Processing → Finished`)
+- **Notificações**
+  - Registro de cada alteração de status na tabela `Notifications`  
 
-## Features
-- Customers: CRUD + search by name/email
-- Products: CRUD + search by name
-- Orders: create (with dynamic items via jQuery, total auto-calc), list + filters (customer/status), details with items, update status (New/Processing/Finished)
-- Stock validation on server (and stock decrease on create)
-- Notifications table records each status change
+---
 
-## Notes
-- Code is written in English, clean and commented where needed.
-- No scaffolding used.
-- Simple layered structure with repositories (Dapper) and DI.
+## 🛠️ Tecnologias utilizadas
 
-Good luck!
+- **Back-end:** ASP.NET Core MVC (C#) + .NET 6  
+- **Banco de dados:** SQL Server  
+- **ORM leve:** [Dapper](https://github.com/DapperLib/Dapper)  
+- **UI:** Bootstrap 5 + jQuery  
+- **Padrões:** Repositories, Dependency Injection, ViewModels  
+
+---
+
+## 🚀 Como rodar localmente
+
+### 1) Pré-requisitos
+- .NET SDK 6.0  
+- SQL Server (instância local ou remota)  
+- SQL Server Management Studio (SSMS) ou Azure Data Studio  
+
+### 2) Criar o banco de dados
+No SSMS, rode o script:
+
+```sql
+
+
