@@ -109,7 +109,7 @@ Criação de pedido :
 
  Detalhes do pedido : 
 
-<img width="1366" height="653" alt="Screenshot 2025-08-18 at 14-56-39 UXComex - Order Manager" src="https://github.com/user-attachments/assets/00ffa9da-057f-40b5-9e14-f7830d262468" />
+<img width="1366" height="653" alt="Screenshot 2025-08-18 at 14-59-27 UXComex - Order Manager" src="https://github.com/user-attachments/assets/0a94f7bc-b1eb-4e86-8169-ee3119421c49" />
 
 
 
