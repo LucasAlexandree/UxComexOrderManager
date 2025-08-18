@@ -1,0 +1,42 @@
+
+@model IEnumerable<WebApp.Models.Customer>
+@{
+    Layout = "_Layout";
+    var q = ViewBag.Query as string;
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Customers</h2>
+  <a class="btn btn-success" href="/Customers/Create">+ New</a>
+</div>
+
+<form class="row g-2 mb-3">
+  <div class="col-md-4">
+    <input class="form-control" name="q" placeholder="Search name or email" value="@q" />
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-outline-primary">Filter</button>
+    <a class="btn btn-outline-secondary" href="/Customers">Clear</a>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Created</th><th></th></tr>
+  </thead>
+  <tbody>
+  @foreach (var c in Model)
+  {
+      <tr>
+        <td>@c.Id</td>
+        <td>@c.Name</td>
+        <td>@c.Email</td>
+        <td>@c.Phone</td>
+        <td>@c.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+        <td>
+          <a class="btn btn-sm btn-primary" href="/Customers/Edit/@c.Id">Edit</a>
+          <a class="btn btn-sm btn-danger" href="/Customers/Delete/@c.Id">Delete</a>
+        </td>
+      </tr>
+  }
+  </tbody>
+</table>

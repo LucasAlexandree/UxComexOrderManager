@@ -1,0 +1,43 @@
+
+@model WebApp.Models.Order
+@{
+    Layout = "_Layout";
+}
+<h2>Order #@Model.Id</h2>
+<p><strong>Customer:</strong> @Model.Customer?.Name</p>
+<p><strong>Date:</strong> @Model.OrderDate.ToString("yyyy-MM-dd HH:mm")</p>
+<p><strong>Status:</strong> @Model.Status</p>
+
+<form method="post" action="/Orders/UpdateStatus/@Model.Id" class="d-flex gap-2 align-items-center mb-3">
+  <input type="hidden" name="id" value="@Model.Id" />
+  <select class="form-select w-auto" name="status">
+    @foreach (var s in new[]{ "New", "Processing", "Finished" })
+    {
+        <option value="@s" selected="@(Model.Status == s ? "selected" : null)">@s</option>
+    }
+  </select>
+  <button class="btn btn-outline-primary">Update Status</button>
+</form>
+
+<table class="table table-bordered">
+  <thead>
+    <tr><th>Product</th><th>Unit Price</th><th>Qty</th><th>Subtotal</th></tr>
+  </thead>
+  <tbody>
+    @foreach (var i in Model.Items)
+    {
+        <tr>
+          <td>@i.Product?.Name</td>
+          <td>@i.UnitPrice.ToString("C")</td>
+          <td>@i.Quantity</td>
+          <td>@(i.UnitPrice * i.Quantity)</td>
+        </tr>
+    }
+    <tr class="table-light">
+      <td colspan="3" class="text-end"><strong>Total</strong></td>
+      <td><strong>@Model.Total.ToString("C")</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<a class="btn btn-secondary" href="/Orders">Back</a>

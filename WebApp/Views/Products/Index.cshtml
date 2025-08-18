@@ -1,0 +1,42 @@
+
+@model IEnumerable<WebApp.Models.Product>
+@{
+    Layout = "_Layout";
+    var q = ViewBag.Query as string;
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Products</h2>
+  <a class="btn btn-success" href="/Products/Create">+ New</a>
+</div>
+
+<form class="row g-2 mb-3">
+  <div class="col-md-4">
+    <input class="form-control" name="q" placeholder="Search name" value="@q" />
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-outline-primary">Filter</button>
+    <a class="btn btn-outline-secondary" href="/Products">Clear</a>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr><th>ID</th><th>Name</th><th>Description</th><th>Price</th><th>Stock</th><th></th></tr>
+  </thead>
+  <tbody>
+  @foreach (var p in Model)
+  {
+      <tr>
+        <td>@p.Id</td>
+        <td>@p.Name</td>
+        <td>@p.Description</td>
+        <td>@p.Price.ToString("C")</td>
+        <td>@p.StockQuantity</td>
+        <td>
+          <a class="btn btn-sm btn-primary" href="/Products/Edit/@p.Id">Edit</a>
+          <a class="btn btn-sm btn-danger" href="/Products/Delete/@p.Id">Delete</a>
+        </td>
+      </tr>
+  }
+  </tbody>
+</table>

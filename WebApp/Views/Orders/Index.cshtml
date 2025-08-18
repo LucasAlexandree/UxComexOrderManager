@@ -1,0 +1,58 @@
+
+@model IEnumerable<WebApp.Models.Order>
+@{
+    Layout = "_Layout";
+    var customers = ViewBag.Customers as IEnumerable<WebApp.Models.Customer>;
+    int? cid = ViewBag.CustomerId as int?;
+    string? st = ViewBag.Status as string;
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Orders</h2>
+  <a class="btn btn-success" href="/Orders/Create">+ New</a>
+</div>
+
+<form class="row g-2 mb-3">
+  <div class="col-md-4">
+    <select class="form-select" name="customerId">
+      <option value="">-- All Customers --</option>
+      @foreach (var c in customers)
+      {
+          <option value="@c.Id" selected="@(cid == c.Id ? "selected" : null)">@c.Name</option>
+      }
+    </select>
+  </div>
+  <div class="col-md-3">
+    <select class="form-select" name="status">
+      <option value="">-- Any Status --</option>
+      @foreach (var s in new[]{ "New", "Processing", "Finished" })
+      {
+          <option value="@s" selected="@(st == s ? "selected" : null)">@s</option>
+      }
+    </select>
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-outline-primary">Filter</button>
+    <a class="btn btn-outline-secondary" href="/Orders">Clear</a>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr><th>#</th><th>Customer</th><th>Date</th><th>Total</th><th>Status</th><th></th></tr>
+  </thead>
+  <tbody>
+  @foreach (var o in Model)
+  {
+      <tr>
+        <td>@o.Id</td>
+        <td>@o.Customer?.Name</td>
+        <td>@o.OrderDate.ToString("yyyy-MM-dd HH:mm")</td>
+        <td>@o.Total.ToString("C")</td>
+        <td>@o.Status</td>
+        <td>
+          <a class="btn btn-sm btn-primary" href="/Orders/Details/@o.Id">Details</a>
+        </td>
+      </tr>
+  }
+  </tbody>
+</table>
