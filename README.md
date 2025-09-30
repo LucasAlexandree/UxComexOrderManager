@@ -8,7 +8,7 @@
 
 
 Aplicação desenvolvida em **ASP.NET Core MVC (.NET 6)** com **Dapper** e **SQL Server**, simulando um sistema de **gestão de pedidos**.  
-Projeto entregue como desafio técnico, mas estruturado de forma limpa  
+
 
 ---
 
